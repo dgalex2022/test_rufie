@@ -1,7 +1,7 @@
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QApplication,QWidget,QPushButton,QLabel,QRadioButton, QVBoxLayout, QHBoxLayout, QMessageBox, QLineEdit
 from instr import *
 from second_win import *
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication,QWidget,QPushButton,QLabel,QRadioButton, QVBoxLayout, QHBoxLayout, QMessageBox, QLineEdit
 class MainWin(QWidget):
     def __init__(self):
         super().__init__()
@@ -16,13 +16,20 @@ class MainWin(QWidget):
         self.layout_line=QVBoxLayout()
         self.layout_line.addWidget(self.hello_text,alignment=Qt.AlignLeft)
         self.layout_line.addWidget(self.instruction,alignment=Qt.AlignLeft)
-        self.layout_line.addWidget(self.btn_next,alignment=Qt.Center)
+        self.layout_line.addWidget(self.btn_next,alignment=Qt.AlignCenter)
+        self.setLayout(self.layout_line)    
+
     def next_click(self):
-        self.btn_next.clicked.connect(self.next_click)
+        self.tw=TestWin()
+        self.hide()
+
     def set_appear(self):
         self.setWindowTitle(txt_title)
         self.resize(win_width,win_height)
         self.move(win_x,win_y)
+        
+    def connects(self):
+        self.btn_next.clicked.connect(self.next_click)
 
 app=QApplication([])
 mw=MainWin()
